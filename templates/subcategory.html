@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ subcategory }} - {{ category }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #FAEBD7;
+            font-family: Montserrat, sans-serif;
+            margin: 0;
+            padding: 0 20px;
+            text-align: center; /* Центрирование текста */
+        }
+        h1 {
+            margin-top: 50px;
+            color: #654321;
+            font-size: 36px;
+        }
+        p {
+            font-size: 22px;
+            color: #8B4513;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .link-container {
+            margin-top: 30px;
+            position: relative; /* Для позиционирования изображения */
+            display: inline-block; /* Чтобы контейнер сжимался по содержимому */
+        }
+        a {
+            color: #8B4513;
+            text-decoration: none;
+            font-size: 24px;
+            display: block; /* Блочный элемент для ссылки */
+            margin-bottom: 20px; /* Отступ от ссылки до изображения */
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .animated-image {
+            width: 100px;
+            height: auto;
+            animation: float 2s infinite alternate;
+            opacity: 0.8;
+        }
+        .painting-image {
+            width: 120px;
+            animation: rotate 3s infinite alternate;
+            opacity: 0.8;
+        }
+        .literature-image {
+            width: 110px;
+            animation: fade-in-out 3s infinite alternate;
+            opacity: 0.8;
+        }
+        @keyframes float {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-10px);
+            }
+        }
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(5deg);
+            }
+        }
+        @keyframes fade-in-out {
+            from {
+                opacity: 0.6;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ category }} - {{ subcategory }}</h1>
+
+    {% for paragraph in paragraphs %}
+        <p>{{ paragraph.strip() }}</p>
+    {% endfor %}
+
+    <!-- Контейнер для ссылки и изображения -->
+    <div class="link-container">
+        <a href="{{ url_for('index') }}">Вернуться на главную</a>
+        {% if category == 'Музыка' %}
+            <img src="{{ url_for('static', filename='music_icon.png') }}" alt="Музыка" class="animated-image">
+        {% elif category == 'Живопись' %}
+            <img src="{{ url_for('static', filename='painting_icon.png') }}" alt="Живопись" class="painting-image">
+        {% elif category == 'Литература' %}
+            <img src="{{ url_for('static', filename='literature_icon.png') }}" alt="Литература" class="literature-image">
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

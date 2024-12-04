@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сервис КультИнфо</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #FAEBD7; /* Светло-бежевый фон */
+            text-align: center; /* Центрирование всего текста */
+            font-family: Montserrat, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header-container {
+            display: flex;
+            justify-content: center; /* Центрирование содержимого */
+            align-items: center; /* Вертикальное центрирование */
+            margin-top: 50px; /* Отступ сверху для заголовка */
+        }
+        h1 {
+            color: #654321; /* Цвет заголовка */
+            font-size: 40px; /* Увеличенный размер шрифта */
+            margin: 0; /* Убираем стандартные отступы */
+            padding-right: 20px; /* Отступ между текстом и изображением */
+        }
+        .animated-logo {
+            width: 80px; /* Размер изображения */
+            animation: slideRotate 2s infinite alternate; /* Анимация сдвига и вращения */
+        }
+        @keyframes slideRotate {
+            0% {
+                transform: translateX(0) rotate(3deg); /* Начальное положение */
+            }
+            100% {
+                transform: translateX(10px) rotate(10deg); /* Конечное положение */
+            }
+        }
+        h2 {
+            color: #654321;
+            font-size: 28px;
+            margin: 20px 0 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 7px 0;
+        }
+        a {
+            color: #8B4513;
+            text-decoration: none;
+            font-size: 20px;
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <h1>Сервис КультИнфо</h1>
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Логотип" class="animated-logo">
+    </div>
+
+    {% for category, subcategories in categories.items() %}
+        <h2>{{ category }}</h2>
+        <ul>
+            {% for subcategory in subcategories %}
+                <li>
+                    <a href="{{ url_for('subcategory_detail', category=category, subcategory=subcategory) }}">
+                        {{ subcategory }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
